@@ -1,0 +1,9 @@
+# Ignorer le dossier obj
+obj/
+
+# Ignorer le dossier .vs
+.vs/
+
+*.sln
+
+*.csproj
