@@ -7,7 +7,6 @@ namespace mots_glisses
         static void Main(string[] args)
         {
 
-            Dictionnaire a = new Dictionnaire("fr");
         }
     }
 }
