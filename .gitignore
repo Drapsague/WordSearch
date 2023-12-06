@@ -1,5 +1,6 @@
 # Ignorer le dossier obj
 obj/
+bin/
 
 # Ignorer le dossier .vs
 .vs/
