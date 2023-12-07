@@ -41,7 +41,7 @@ namespace mots_glisses
         }
 
 
-        public List<string> readDico(string filename)
+        List<string> readDico(string filename)
         {
             List<string> dictio = new List<string>();
             string fullname = this.path + "\\" + filename;
@@ -74,11 +74,11 @@ namespace mots_glisses
 
         public bool RechDichoRecursif(string mot)
         {
-
+            
         }
 
 
-        public static void Tri_quick_sort(List<string> dictio)
+        static void Tri_quick_sort(List<string> dictio)
         {
             
         }
