@@ -1,12 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Xml.Linq;
-using System.Diagnostics;
 
 namespace mots_glisses
 {
@@ -54,6 +46,7 @@ namespace mots_glisses
                 // Ajoute les éléments d'un tableau à une liste
                 dictio.AddRange(words);
             }
+            sr.Close();
             return dictio;
         }
 
@@ -82,21 +75,9 @@ namespace mots_glisses
         /// <returns></returns>
         public bool RechDichoRecursif(List<string> liste, string mot, int index)
         {
-            if (index > liste.Count - 1)
-            {
-                return false;
-            }
-            if (mot == liste[index])
-            {
-                return true;
-            }
-
-            return RechDichoRecursif(liste, mot, index + 1);
-
-            
-
-
+            return false;
         }
+
 
         /// <summary>
         /// echange deux mots dans une liste
@@ -139,7 +120,7 @@ namespace mots_glisses
 
 
         /// <summary>
-        /// Tri une liste par ordre alphabetique
+        /// Tri une liste par ordre alphabetique via la méthode quicksort
         /// </summary>
         /// <param name="dictio"></param>
         /// <param name="debut"></param>
@@ -151,8 +132,7 @@ namespace mots_glisses
             {
                 int pivot = indexPivot(dictio, debut, fin);
                 Tri_quick_sort(dictio, debut, pivot - 1);
-                Tri_quick_sort(dictio, pivot + 1, fin);
-                
+                Tri_quick_sort(dictio, pivot + 1, fin);                
             }
 
         }

@@ -12,20 +12,37 @@ namespace mots_glisses
 
 
         //Constructeur
-        public Joueur(string nom, int score)
+        public Joueur(string nom)
         {
-            if (nom != null)
+            if (nom != null && nom.Length != 0)
             {
                 this.nom = nom;
                 this.motsTrouves = new List<string>();
-                this.score = score;
-
-            }else
+                this.score = 0;
+            }
+            else
             {
-                Console.WriteLine( "Erreur Nom");
+                Console.WriteLine("Erreur Nom");
             }
             
         }
+
+
+        public string Nom
+        {
+            get { return this.nom; }
+        }
+
+        public List<string> MotsTrouves
+        {
+            get { return this.motsTrouves; }
+        }
+
+        public int Score
+        {
+            get { return this.score; }
+        }
+
         /// <summary>
         /// Ajoute les mots trouvés dans une liste
         /// </summary>
@@ -34,6 +51,7 @@ namespace mots_glisses
         {
             motsTrouves.Add(mot);
         }
+
 
         /// <summary>
         /// Incremente le score du joueur
@@ -44,6 +62,7 @@ namespace mots_glisses
             this.score += val;
         }
 
+
         /// <summary>
         /// Vérifie si un mot a deja été trouvé
         /// </summary>
@@ -53,7 +72,6 @@ namespace mots_glisses
         {
             return motsTrouves.Contains(mot) ? true : false;
         }
-
 
 
         /// <summary>
@@ -72,11 +90,6 @@ namespace mots_glisses
             return String.Format("Le nom du joueur est : {0}, il a un score de {1} et a trouvé les mots suivant : {2}", this.nom, this.score, temp);
 
         }
-
-
-
-
-
     }
 
 }
