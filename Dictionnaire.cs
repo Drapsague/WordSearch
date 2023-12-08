@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace mots_glisses
 {
@@ -32,8 +33,7 @@ namespace mots_glisses
             }
             return res;
         }
-
-
+      
         List<string> readDico(string filename)
         {
             List<string> dictio = new List<string>();
@@ -73,9 +73,21 @@ namespace mots_glisses
         /// <param name="mot"></param>
         /// <param name="index"></param>
         /// <returns></returns>
-        public bool RechDichoRecursif(List<string> liste, string mot, int index)
+        public static bool RechDichoRecursif(List<string> liste, string mot, int debut, int fin)
         {
-            return false;
+
+            int milieu = (debut + fin) / 2;
+            if (debut > fin || liste == null || liste.Count == 0) return false;
+            else
+                if (mot == liste[milieu])
+                return true;
+            else
+                    if (mot.CompareTo(liste[milieu]) < 0)
+                return RechDichoRecursif(liste, mot, debut, milieu - 1);
+
+            else
+                return RechDichoRecursif(liste, mot, milieu + 1, fin);
+
         }
 
 
@@ -117,6 +129,7 @@ namespace mots_glisses
             return i + 1;
 
         }
+        
 
 
         /// <summary>
@@ -125,7 +138,7 @@ namespace mots_glisses
         /// <param name="dictio"></param>
         /// <param name="debut"></param>
         /// <param name="fin"></param>
-        static void Tri_quick_sort(List<string> dictio, int debut, int fin)
+        public static void Tri_quick_sort(List<string> dictio, int debut, int fin)
         {
 
             if(debut < fin) 
@@ -136,6 +149,8 @@ namespace mots_glisses
             }
 
         }
+
         
+
     }
 }
