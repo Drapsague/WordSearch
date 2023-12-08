@@ -5,6 +5,9 @@
         Dictionnaire dictionnaire;
         Plateau plateau;
         List<Joueur> joueurs;
+        int difficulte;
+        int dureeTour;
+        int nbRounds;
 
         /// <summary>
         /// Constructeur pour une partie basée sur un plateau générée aléatoirement
@@ -12,12 +15,35 @@
         /// <param name="nbLignes"></param>
         /// <param name="nbColonnes"></param>
         /// <param name="langue"></param>
-        public Jeu(int nbLignes, int nbColonnes, string langue)
+        public Jeu(int dureeTour, int nbRounds, int difficulte, string langue)
         {
             this.dictionnaire = new Dictionnaire(langue);
-            this.plateau = new Plateau(nbLignes, nbColonnes);
+            this.dureeTour = dureeTour;
+            this.nbRounds = nbRounds;
+            this.difficulte = difficulte;
+           
             creerJoueurs();
+
+            for (int r = 0; r < nbRounds; r++)
+            {
+                switch (difficulte)
+                {
+                    case 1:
+                        this.plateau = new Plateau(4, 4);
+                        break;
+
+                    case 2:
+                        this.plateau = new Plateau(6, 6);
+                        break;
+
+                    case 3:
+                        this.plateau = new Plateau(8, 8);
+                        break;
+                }
+                Round();
+            }
         }
+
 
         /// <summary>
         /// Constructeur pour une partie basée sur un fichier
@@ -26,6 +52,7 @@
         /// <param name="langue"></param>
         public Jeu(string fichierSauvegarde, string langue)
         {
+            // Liste de plateaux pour la partie (donc de fichiers de sauvegarde)
             this.dictionnaire = new Dictionnaire(langue);
             this.plateau = new Plateau(fichierSauvegarde);
             creerJoueurs();
@@ -66,11 +93,39 @@
         }
 
 
-        void Start()
+        void Round()
         {
-            foreach(Joueur joueur in joueurs)
+            foreach (Joueur joueur in joueurs)
             {
+                Console.WriteLine("Tour de " + joueur.Nom);
 
+                DateTime debut = DateTime.Now;
+                DateTime actuel = DateTime.Now;
+
+                /// Durée écoulée
+                TimeSpan interval = actuel - debut;
+
+                /// On vérifie que le nombre de secondes écoulées est inférieur à la durée de jeu (en secondes aussi)
+                /*
+                while ((interval.TotalSeconds < stop) && (joueur.MotsTrouves.Count < plateau.MotsRecherches.Count))
+
+                {
+
+                    Console.WriteLine(plateau.afficherPlateau());
+
+                    Console.WriteLine(joueur.ToString());
+
+                    Console.WriteLine("Tu as trouvé " + joueur.MotsTrouves.Count + " mots sur " + plateau.MotsRecherches.Count);
+
+                    string mot, direction;
+
+                    int ligne = -1, colonne = -1;
+
+                    Console.WriteLine("Le temps écoulé est supérieur à " + (int)interval.TotalSeconds / 60 + " minutes et " + (int)interval.TotalSeconds % 60 + " secondes");
+
+                    Console.WriteLine("Tu as " + (int)stop / 60 + " minutes et " + (int)stop % 60 + " secondes pour trouver tous les mots");
+                }
+                */
             }
         }
 
