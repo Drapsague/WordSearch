@@ -6,7 +6,7 @@
         Plateau plateau;
         List<Joueur> joueurs;
         int difficulte;
-        int dureeTour;
+        string dureeTour;
         int nbRounds;
 
         /// <summary>
@@ -15,7 +15,7 @@
         /// <param name="nbLignes"></param>
         /// <param name="nbColonnes"></param>
         /// <param name="langue"></param>
-        public Jeu(int dureeTour, int nbRounds, int difficulte, string langue)
+        public Jeu(string dureeTour, int nbRounds, int difficulte, string langue)
         {
             this.dictionnaire = new Dictionnaire(langue);
             this.dureeTour = dureeTour;
@@ -99,33 +99,20 @@
             {
                 Console.WriteLine("Tour de " + joueur.Nom);
 
+                double stop = TimeSpan.Parse(dureeTour).TotalMinutes;
+                TimeSpan intStop = TimeSpan.FromMinutes(stop);
                 DateTime debut = DateTime.Now;
                 DateTime actuel = DateTime.Now;
 
-                /// Durée écoulée
+                // Durée écoulée
                 TimeSpan interval = actuel - debut;
-
-                /// On vérifie que le nombre de secondes écoulées est inférieur à la durée de jeu (en secondes aussi)
-                /*
-                while ((interval.TotalSeconds < stop) && (joueur.MotsTrouves.Count < plateau.MotsRecherches.Count))
-
+                while (interval < intStop)
                 {
-
-                    Console.WriteLine(plateau.afficherPlateau());
-
-                    Console.WriteLine(joueur.ToString());
-
-                    Console.WriteLine("Tu as trouvé " + joueur.MotsTrouves.Count + " mots sur " + plateau.MotsRecherches.Count);
-
-                    string mot, direction;
-
-                    int ligne = -1, colonne = -1;
-
-                    Console.WriteLine("Le temps écoulé est supérieur à " + (int)interval.TotalSeconds / 60 + " minutes et " + (int)interval.TotalSeconds % 60 + " secondes");
-
-                    Console.WriteLine("Tu as " + (int)stop / 60 + " minutes et " + (int)stop % 60 + " secondes pour trouver tous les mots");
+                    Console.WriteLine(interval.ToString());
+                    actuel = DateTime.Now;
+                    interval = actuel - debut;
                 }
-                */
+                Console.WriteLine(interval);
             }
         }
 

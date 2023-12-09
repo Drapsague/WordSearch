@@ -24,8 +24,9 @@ namespace mots_glisses
             this.nbColonnes = nbColonnes;
             this.nbLettresRestantes = this.nbLignes * this.nbColonnes;
 
-            GenAleat();
+
             readContraintes(fichierContraintes);
+            genAleat();
         }
 
 
@@ -44,57 +45,6 @@ namespace mots_glisses
         public int NbLettresRestantes { get { return nbLettresRestantes; } }
 
 
-
-        /// <summary>
-        /// Génère une matrice de char aléatoire
-        /// </summary>
-        /// <returns></returns>
-        void GenAleat()
-        {
-            char[,] plateau = new char[nbLignes, nbColonnes];
-            Random rnd = new Random();
-
-            // Stocke le nombre d'occurences pour chaque lettre
-            int[] occurences = new int[26];
-
-            /*
-            for (int i = 0; i < nbLignes; i++)
-            {
-                for (int j = 0; j < nbColonnes; j++)
-                {
-                    char randomChar = (char)('a' + rnd.Next(0, 26));
-                    // Vérifie si le nombre d'occurences de la lettre choisie aléatoirement
-                    // dans le plateau est inférieur au nombre max d'occurences pour cette lettre
-                    int ascii_conversion = (int)randomChar - 97;
-                    if (occurences[ascii_conversion] < maxOccurences[ascii_conversion])
-                    {
-                        plateau[i, j] = randomChar;
-                        occurences[ascii_conversion]++;
-                    }
-                }
-            }
-            */
-
-
-            int i = 0;
-            int j = 0;
-            while (i * j < nbLignes * nbColonnes)
-            {
-                char randomChar = (char)('a' + rnd.Next(0, 26));
-                // Vérifie si le nombre d'occurences de la lettre choisie aléatoirement
-                // dans le plateau est inférieur au nombre max d'occurences pour cette lettre
-                int ascii_conversion = (int)randomChar - 97;
-                if (occurences[ascii_conversion] < maxOccurences[ascii_conversion])
-                {
-                    this.plateau[i, j] = randomChar;
-                    occurences[ascii_conversion]++;
-                    i++;
-                    j++;
-                }
-            }
-        }
-
-
         // AJOUTER DES TRY CATCH PARTOUT
         /// <summary>
         /// Lit les contraintes d'occurences et de poids sur les lettres
@@ -104,9 +54,9 @@ namespace mots_glisses
         void readContraintes(string filename)
         {
             string fullname = String.Format("{0}\\{1}", this.path, filename);
-            string[] lines = File.ReadAllLines(fullname); 
-            
-            if (lines.Length == 26) 
+            string[] lines = File.ReadAllLines(fullname);
+
+            if (lines.Length == 26)
             {
                 int[] maxOccurences = new int[26];
                 int[] poidsMots = new int[26];
@@ -122,6 +72,37 @@ namespace mots_glisses
             else
             {
                 throw new Exception("Le fichier doit contenir exactement 26 lignes");
+            }
+        }
+
+
+        /// <summary>
+        /// Génère une matrice de char aléatoire
+        /// </summary>
+        /// <returns></returns>
+        void genAleat()
+        {
+            this.plateau = new char[nbLignes, nbColonnes];
+            Random rnd = new Random();
+
+            // Stocke le nombre d'occurences pour chaque lettre
+            int[] occurences = new int[26];
+
+            int index = 0;
+            while (index < nbLignes * nbColonnes)
+            {
+                char randomChar = (char)('a' + rnd.Next(0, 26));
+                // Vérifie si le nombre d'occurences de la lettre choisie aléatoirement
+                // dans le plateau est inférieur au nombre max d'occurences pour cette lettre
+                int ascii_conversion = (int)randomChar - 97;
+                if (occurences[ascii_conversion] < maxOccurences[ascii_conversion])
+                {
+                    int i = index / nbColonnes;
+                    int j = index % nbColonnes;
+                    this.plateau[i, j] = randomChar;
+                    occurences[ascii_conversion]++;
+                    index++;
+                }
             }
         }
 
@@ -184,7 +165,7 @@ namespace mots_glisses
 
 
 
-        public string afficherPlateau()
+        public string afficher()
         {
             string res = "";
             for (int i = 0; i < nbLignes; i++)
@@ -204,9 +185,41 @@ namespace mots_glisses
         }
 
 
-        public void Maj_Plateau(object objet)
+
+        /// <summary>
+        /// Supprime le mot trouvé et réarrange le tableau en conséquence
+        /// </summary>
+        /// <param name="listeCoord">Liste des coordonnées des lettres du mot à supprimer</param>
+        public void Maj_Plateau(List<int[]> listeCoord)
         {
-            this.nbLettresRestantes--;
+            // Supprime emplacements du mot
+            foreach (int[] coord in listeCoord)
+            {
+                plateau[coord[0], coord[1]] = ' ';
+            }
+
+            // 
+            for (int i = nbLignes - 1; i >= 0; i--)
+            {
+                for (int j = 0; j < nbColonnes; j++)
+                {
+                    if (plateau[i, j] == ' ')
+                    {
+                        for (int k = i; k > 0; k--)
+                        {
+                            Console.WriteLine(afficher());
+                            int decalageHaut = 1;
+                            while (k - decalageHaut > 0 && plateau[k - decalageHaut, j] == ' ')
+                            {
+                                decalageHaut++;
+                            }
+                            plateau[k, j] = plateau[k - decalageHaut, j];
+                            plateau[k - decalageHaut, j] = ' ';
+                        }
+                        plateau[0, j] = ' ';
+                    }
+                }
+            }
         }
     }
 }

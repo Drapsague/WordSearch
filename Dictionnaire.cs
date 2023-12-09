@@ -33,7 +33,13 @@ namespace mots_glisses
             }
             return res;
         }
-      
+        
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns></returns>
         List<string> readDico(string filename)
         {
             List<string> dictio = new List<string>();
@@ -75,7 +81,6 @@ namespace mots_glisses
         /// <returns></returns>
         public static bool RechDichoRecursif(List<string> liste, string mot, int debut, int fin)
         {
-
             int milieu = (debut + fin) / 2;
             if (debut > fin || liste == null || liste.Count == 0) return false;
             else
@@ -84,13 +89,12 @@ namespace mots_glisses
             else
                     if (mot.CompareTo(liste[milieu]) < 0)
                 return RechDichoRecursif(liste, mot, debut, milieu - 1);
-
             else
                 return RechDichoRecursif(liste, mot, milieu + 1, fin);
 
         }
 
-
+        
         /// <summary>
         /// echange deux mots dans une liste
         /// </summary>
