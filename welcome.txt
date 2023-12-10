@@ -1,0 +1,20 @@
+		
+		  ▄████  ██▓     ██▓  ██████   ██████  ███▄ ▄███▓ ▒█████  ▄▄▄█████▓  ██████ 
+		 ██▒ ▀█▒▓██▒    ▓██▒▒██    ▒ ▒██    ▒ ▓██▒▀█▀ ██▒▒██▒  ██▒▓  ██▒ ▓▒▒██    ▒ 
+		▒██░▄▄▄░▒██░    ▒██▒░ ▓██▄   ░ ▓██▄   ▓██    ▓██░▒██░  ██▒▒ ▓██░ ▒░░ ▓██▄   
+		░▓█  ██▓▒██░    ░██░  ▒   ██▒  ▒   ██▒▒██    ▒██ ▒██   ██░░ ▓██▓ ░   ▒   ██▒
+		░▒▓███▀▒░██████▒░██░▒██████▒▒▒██████▒▒▒██▒   ░██▒░ ████▓▒░  ▒██▒ ░ ▒██████▒▒
+		 ░▒   ▒ ░ ▒░▓  ░░▓  ▒ ▒▓▒ ▒ ░▒ ▒▓▒ ▒ ░░ ▒░   ░  ░░ ▒░▒░▒░   ▒ ░░   ▒ ▒▓▒ ▒ ░
+		  ░   ░ ░ ░ ▒  ░ ▒ ░░ ░▒  ░ ░░ ░▒  ░ ░░  ░      ░  ░ ▒ ▒░     ░    ░ ░▒  ░ ░
+		░ ░   ░   ░ ░    ▒ ░░  ░  ░  ░  ░  ░  ░      ░   ░ ░ ░ ▒    ░      ░  ░  ░  
+		      ░     ░  ░ ░        ░        ░         ░       ░ ░                 ░  
+
+Bienvenue dans le jeu des Mots Glissés !
+
+Dans ce jeu, deux joueurs se lancent dans une compétition en cherchant à composer des mots à partir d'un plateau aléatoire rempli de lettres. 
+
+À chaque tour, les joueurs explorent ce plateau pour former des mots, en commençant par la base de la matrice et en se déplaçant horizontalement, verticalement ou diagonalement.
+
+La recherche de mots n'est pas seulement un défi de rapidité et d'astuce, mais aussi un test de stratégie, car chaque mot trouvé affecte la configuration du plateau, similaire au jeu de "Puissance 4". 
+
+Ce jeu est un excellent moyen de tester vos compétences en vocabulaire et en stratégie, tout en vous amusant.

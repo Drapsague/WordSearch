@@ -1,0 +1,21 @@
+ ____  ____  ___  __    ____  ____ 
+(  _ \(  __)/ __)(  )  (  __)/ ___)
+ )   / ) _)( (_ \/ (_/\ ) _) \___ \
+(__\_)(____)\___/\____/(____)(____/
+
+
+- Le jeu se déroule sur un plateau composé de lettres choisies au hasard. Chaque joueur, à son tour, doit trouver des mots sur ce plateau dans un temps imparti.
+
+- Les mots peuvent être formés en se déplaçant à gauche, à droite ou en montant à la verticale depuis la base de la matrice.
+
+- Un joueur propose un mot, qui doit être d’au moins deux lettres, appartenir au dictionnaire français et la grille. Sinon la main passe au joueur suivant.
+
+- Un joueur ne peut pas proposer un mot qu'il a déjà trouvé.
+
+- Après qu’un mot soit trouvé et validé, les lettres des colonnes impactées par le mot glissent vers le bas pour combler les cases utilisées, cela crée de nouvelles possibilités.
+
+- Le tour se termine lorsqu'il n’y a plus de lettres sur le plateau ou que les joueurs ont décidé qu'il n'y a plus de mot correct sur la grille (ils doivent entrer le mot EXIT pour passer au prochain tour).
+
+- Les scores sont déterminés en fonction de la longueur des mots trouvés et du poids de chaque lettre. Les mots plus longs sont donc plus avantageux.
+
+- Lorsque tous les tours sont passés, la partie est finie et un tableau des scores s'affiche avec le gagnant.

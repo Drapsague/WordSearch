@@ -1,8 +1,4 @@
-﻿using System;
-
-
-
-namespace mots_glisses
+﻿namespace mots_glisses
 {
     public class Joueur
     {
@@ -11,7 +7,10 @@ namespace mots_glisses
         int score = 0;
 
 
-        //Constructeur
+        /// <summary>
+        /// Constructeur de Joueur
+        /// </summary>
+        /// <param name="nom">Nom du joueur</param>
         public Joueur(string nom)
         {
             if (nom != null && nom.Length != 0)
@@ -22,7 +21,19 @@ namespace mots_glisses
             }
             else
             {
-                Console.WriteLine("Erreur Nom");
+                // Si nom n'est pas correct alors on choisit aléatoirement un nom pour le joueur
+                Random rnd = new Random();
+                string chars = "abcdefghijklmnopqrstuvwxyz";
+                int wordLength = rnd.Next(5);
+                string rndNom = "";
+                
+                for (int i = 0; i < wordLength; i++)
+                {
+                    rndNom += chars[rnd.Next(0, 26)];
+                }
+
+                Console.WriteLine("Le nom entré n'est pas correct, le joueur s'appellera donc " + rndNom);
+                Thread.Sleep(2000);
             }
             
         }
@@ -43,11 +54,12 @@ namespace mots_glisses
             get { return this.score; }
         }
 
+
         /// <summary>
-        /// Ajoute les mots trouvés dans une liste
+        /// Ajoute un mot à la liste des mots trouvés par le joueur
         /// </summary>
-        /// <param name="mot"></param>
-        public void Add_Mot(string mot)
+        /// <param name="mot">Mot trouvé par le joueur</param>
+        public void AddMot(string mot)
         {
             motsTrouves.Add(mot);
         }
@@ -56,28 +68,31 @@ namespace mots_glisses
         /// <summary>
         /// Incremente le score du joueur
         /// </summary>
-        /// <param name="val"></param>
-        public void Add_Score(int val)
+        /// <param name="val">Valeur dont le score augmente</param>
+        public void AddScore(int val)
         {
-            this.score += val;
+            if (val > 0)
+            {
+                this.score += val;
+            }
         }
 
 
         /// <summary>
-        /// Vérifie si un mot a deja été trouvé
+        /// Vérifie si un mot a deja été trouvé par le joueur
         /// </summary>
-        /// <param name="mot"></param>
-        /// <returns></returns>
+        /// <param name="mot">Mot à chercher parmi la liste des mots trouvés par le joueur</param>
+        /// <returns>Si oui ou non le mot a été trouvé</returns>
         public bool Contient(string mot)
         {
-            return motsTrouves.Contains(mot) ? true : false;
+            return motsTrouves.Contains(mot);
         }
 
 
         /// <summary>
-        /// Renvoie les caractéristique du joueur : son nom, son score et les mots qu'il a trouvé
+        /// Renvoie les caractéristiques du joueur : son nom, son score et les mots qu'il a trouvé
         /// </summary>
-        /// <returns></returns>
+        /// <returns>String contenant les caractéristiques du joueur</returns>
         public string toString()
         {
             string temp = "";
@@ -85,11 +100,9 @@ namespace mots_glisses
             {
                 temp += motsTrouves[i] + ", ";
             }
-            temp += motsTrouves[motsTrouves.Count];
+            temp += motsTrouves[motsTrouves.Count - 1];
 
-            return String.Format("Le nom du joueur est : {0}, il a un score de {1} et a trouvé les mots suivant : {2}", this.nom, this.score, temp);
-
+            return String.Format("Le nom du joueur est : {0}, il a un score de {1} et a trouvé les mots suivants : {2}", this.nom, this.score, temp);
         }
     }
-
 }
