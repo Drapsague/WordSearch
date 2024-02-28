@@ -190,7 +190,7 @@ namespace mots_glisses
                                 joueurActuel.AddScore(points);
 
                                 Console.Clear();
-                                Console.WriteLine(String.Format("\nBravo {0} tu as trouvé le mot {1} ce qui t'a rapporté {2} points", joueurActuel.Nom, mot, points));
+                                Console.WriteLine(String.Format("\nBravo {0} tu as trouvé le mot '{1}' ce qui t'a rapporté {2} points", joueurActuel.Nom, mot, points));
                                 Thread.Sleep(4000);
                             }
                             else
@@ -314,6 +314,7 @@ namespace mots_glisses
                 }
             }
             Console.WriteLine(res);
+            Console.ReadKey();
         }
     }
 }
